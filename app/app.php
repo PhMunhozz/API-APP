@@ -5,22 +5,29 @@ define('API_BASE', 'http://localhost/api/?option=');
 
 echo '<h3>APPLICATION</h3><hr>';
 
-// request loop
-for($i = 0; $i < 10; $i++){
-    $result = api_request('random&min=100&max=200');
+// request for API test
+$result = api_request('status');
+echo '<pre>';
+print_r($result);
+
+
+// request loop for random numbers test
+// for($i = 0; $i < 10; $i++){
+//     $result = api_request('random&min=100&max=200');
     
-    // verify if response is ok (success)
-    if($result['status'] == 'ERROR'){
-        die('Requisition failed');
-    }
+//     // verify if response is ok (success)
+//     if($result['status'] == 'ERROR'){
+//         die('Requisition failed');
+//     }
 
-    echo "Random number: " . $result['data'] . '<br>';
-}
-echo "End of random numbers";
+//     echo "Random number: " . $result['data'] . '<br>';
+// }
+// echo "End of random numbers";
 
-// echo '<pre>';
-// print_r($result);
-
+// request for hash test
+$result = api_request('hash');
+echo '<pre>';
+print_r($result);
 
 // functions
 
