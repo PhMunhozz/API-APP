@@ -1,28 +1,36 @@
 <?
 
-$data = [];
+// prepare response
+$data['status'] = 'ERROR';
+$data['data'] = null;
 
-// request
+// check request
 if(isset($_GET['option'])){
     
     switch ($_GET['option']) {
         case 'status':
-            $data['status'] = 'SUCCESS';
-            $data['data'] = 'API running OK!';
+            define_response($data, 'API running OK!');
             break;
-        
-        default:
-            $data['status'] = 'ERROR';
+
+        case 'random':
+            define_response($data, rand(0, 1000));
             break;
     }
-} else {
-    $data['status'] = 'ERROR';
 }
 
-// emitir a resposta da API
+// send API response
 response($data);
 
-// construção da response
+
+// functions
+
+// define response
+function define_response(&$data, $value) {
+    $data['status'] = 'SUCCESS';
+    $data['data'] = $value;
+}
+
+// response construction
 function response($data_response) {
     header('Content-Type: application/json');
     echo json_encode($data_response);
