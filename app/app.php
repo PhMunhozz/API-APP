@@ -7,7 +7,7 @@ echo '<h3>APPLICATION</h3><hr>';
 
 // request loop
 for($i = 0; $i < 10; $i++){
-    $result = api_request('random');
+    $result = api_request('random&min=100&max=200');
     
     // verify if response is ok (success)
     if($result['status'] == 'ERROR'){
